@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
             animator.SetBool("jumping", false);
             animator.SetBool("falling", true);
         }
-        isSlide = animator.GetBool("sliding");
+        animator.SetBool("sliding", isSlide);
     }
 
     public void OnJump()
@@ -48,13 +48,18 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            animator.SetBool("sliding", true);
-            Debug.Log("슬라이드 누름");
+            isSlide = true;
         }
         else
         {
-            animator.SetBool("sliding", false);
-            Debug.Log("슬라이드 뗌");
+            isSlide=false;
         }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isSlide && collision.tag == "Bird") return;
+        GameManager.Instance.GameOver();
     }
 }

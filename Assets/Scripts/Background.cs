@@ -13,7 +13,7 @@ public class Background : MonoBehaviour
     {
         for (int i = 0; i < backgrounds.Count; i++)
         {
-            backgrounds[i].transform.position += Vector3.left * speed * Time.deltaTime;
+            backgrounds[i].transform.position += Vector3.left * speed * GameManager.Instance.globalSpeed * Time.deltaTime;
             if (backgrounds[i].transform.position.x <= endPos)
             {
                 float posX = backgrounds[i].transform.position.x;

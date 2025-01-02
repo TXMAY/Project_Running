@@ -9,7 +9,7 @@ public class Obstacle : MonoBehaviour
 
     void Update()
     {
-        gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
+        gameObject.transform.position += Vector3.left * speed * GameManager.Instance.globalSpeed * Time.deltaTime;
 
         if (gameObject.transform.position.x <= endPos)
         {
