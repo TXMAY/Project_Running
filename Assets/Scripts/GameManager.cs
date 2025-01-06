@@ -6,17 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingleTon<GameManager>
 {
-    public float globalSpeed = 2.0f;
+    public float globalSpeed = 1.0f;
     public int score = 0;
-    [SerializeField] float preScore = 0;
-    [SerializeField] TextMeshProUGUI scoreText;
+    public float preScore = 0;
+    public bool isGameOver = false;
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Game")
+        {
+            globalSpeed = 1.0f;
+            score = 0;
+            preScore = 0;
+            isGameOver = false;
+        }
+    }
     void Update()
     {
-        globalSpeed += Time.deltaTime / 100;
-        preScore += Time.deltaTime * 5;
-        score = (int)preScore;
-        if (scoreText != null) scoreText.text = score.ToString("D4");
+        if (!isGameOver)
+        {
+            globalSpeed += Time.deltaTime / 100;
+            preScore += Time.deltaTime * 5;
+            score = (int)preScore;
+        }
+        else
+        {
+            globalSpeed = 0f;
+        }
     }
     public void GameOver()
     {

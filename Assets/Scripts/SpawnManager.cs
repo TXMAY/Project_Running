@@ -6,26 +6,26 @@ using UnityEngine.UIElements;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> prefabs = new List<GameObject>();
-    [SerializeField] float minSpawnTime = 2.0f;
-    [SerializeField] float maxSpawnTime = 4.0f;
+    [SerializeField] List<GameObject> obstacles = new List<GameObject>();
+    [SerializeField] float objectsMinSpawnTime = 0;
+    [SerializeField] float objectsMaxSpawnTime = 0;
 
     void Start()
     {
-        StartCoroutine(CreateObstacle());
+        StartCoroutine(CreateObjects());
     }
 
 
-    IEnumerator CreateObstacle()
+    IEnumerator CreateObjects()
     {
         while (true)
         {
-            float spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
-            int index = Random.Range(0, prefabs.Count);
+            float spawnTime = Random.Range(objectsMinSpawnTime, objectsMaxSpawnTime);
+            int index = Random.Range(0, obstacles.Count);
 
             yield return new WaitForSeconds(spawnTime);
 
-            Instantiate(prefabs[index]);
+            Instantiate(obstacles[index]);
         }
     }
 }

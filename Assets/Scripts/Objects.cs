@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Objects : MonoBehaviour
 {
-    [SerializeField] float speed = 2.0f;
+    [SerializeField] float speed = 3.0f;
     [SerializeField] float endPos = -9.0f;
 
     void Update()

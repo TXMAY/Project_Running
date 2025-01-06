@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            isSlide=false;
+            isSlide = false;
         }
 
     }
@@ -60,6 +60,19 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (isSlide && collision.tag == "Bird") return;
+        if (collision.tag == "Coin")
+        {
+            Debug.Log("æ∆¿Ã≈€ »πµÊ");
+            GameManager.Instance.preScore += 50.0f;
+            Destroy(collision.gameObject);
+            return;
+        }
+        animator.SetTrigger("hitting");
+        GameManager.Instance.isGameOver = true;
+    }
+
+    void HitObstacle()
+    {
         GameManager.Instance.GameOver();
     }
 }
